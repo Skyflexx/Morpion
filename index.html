@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1 id="game">Jeu !</h1>
+
+<table>
+    <tr>
+        <td id="box1" onclick="check('box1');switchPlayer();this.onclick=null;"></td>
+        <td id="box2" onclick="check('box2');switchPlayer();this.onclick=null;"></td>
+        <td id="box3" onclick="check('box3');switchPlayer();this.onclick=null;"></td>
+    </tr>
+
+    <tr>
+        <td id="box4" onclick="check('box4');switchPlayer();this.onclick=null;"></td>
+        <td id="box5" onclick="check('box5');switchPlayer();this.onclick=null;"></td>
+        <td id="box6" onclick="check('box6');switchPlayer();this.onclick=null;"></td>
+    </tr>
+
+    <tr>
+        <td id="box7" onclick="check('box7');switchPlayer();this.onclick=null;"></td>
+        <td id="box8" onclick="check('box8');switchPlayer();this.onclick=null;"></td>
+        <td id="box9" onclick="check('box9');switchPlayer();this.onclick=null;"></td>
+    </tr>
+
+</table>
+
+<button id="retry" onclick="newGame()">Recommencer ?</button>
+
+<script src="script.js"></script>
+</body>
+</html>
