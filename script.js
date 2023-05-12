@@ -25,9 +25,7 @@ function check(numbox){
 
     numbox.textContent = player;
 
-    count++;
-
-   
+    count++;   
   
     if (count == 9){
 
