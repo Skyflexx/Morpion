@@ -72,11 +72,7 @@ function checkScore(){
 
     let condition7 = (b1.innerText ==  "O" && b5.innerText == "O" && b9.innerText == "O") 
     let condition8 = (b3.innerText ==  "O" && b5.innerText == "O" && b7.innerText == "O")
-
-   
-
-    
-
+ 
     if (condition1 || condition2 || condition3 || condition4 || condition5 || condition6 || condition7 || condition8){
 
         winner.textContent = "Vainqueur, joueur 1 !"
