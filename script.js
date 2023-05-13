@@ -17,9 +17,6 @@ let b9 = document.getElementById("box9")
 
 let gameFinished = false
 
- 
-
-
 function switchPlayer(){ // Fonction permettant de switcher de joueur et donc de symbole.
 
   if (player == player1.symbol){
@@ -98,3 +95,14 @@ function checkScore(player){  // Check toutes les conditions possibles de victoi
   }
 
 }
+
+
+// To do list :
+
+// Afficher quel joueur doit jouer son coup "X à toi !"
+
+// Faire en sorte qu'une fois la partie finie, on ne puisse plus cliquer. Pour l'instant ça affiche le dernier symbole utilisé.
+
+// Réussir à afficher le nom du vainqueur.
+
+// Bonus : Scoring, animations.
