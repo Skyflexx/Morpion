@@ -3,7 +3,9 @@ let player2 = { symbol : "X", name : "Marie"};
 let jeu = document.getElementById("game");
 let count = 0; // compteur des coups. 9 max.
 let player = player1.symbol; // Par défaut le player1
-let winner = document.getElementById("winner")
+
+let competitor1 = document.getElementById("competitor1") // competitor 1 et 2 seront les zones d'affichage pour chaque joueur. "A toi de jouer !" ou encore "gagné !"
+let competitor2 = document.getElementById("competitor2")
 
 let b1 = document.getElementById("box1")
 let b2 = document.getElementById("box2")
@@ -17,23 +19,42 @@ let b9 = document.getElementById("box9")
 
 let gameFinished = false
 
+// let currentPlayer1 = (player == player1.symbol); // Conditions réutilisables partout. Si player == O alors renvoie true.
+// let currentPlayer2 = (player == player2.symbol);
+
 function switchPlayer(){ // Fonction permettant de switcher de joueur et donc de symbole. La fonction est appelée à chaque clic dans le HTML.
 
   if (player == player1.symbol){ // Simple condition pour switcher de joueur.
 
     player = player2.symbol 
 
-  } else player = player1.symbol
+    competitor2.textContent = "A toi de jouer !"
+    competitor1.textContent = ""
+
+  } else {
+    
+    player = player1.symbol
+
+    competitor1.textContent = "A toi de jouer !"
+    competitor2.textContent = ""
+
+  }
   
 }
 
 function check(numbox){ // Appelée individuellement dans le HTML. à chaque clic pour la box concernée. 
 
-  var numbox = document.getElementById(numbox);
+  var numbox = document.getElementById(numbox); 
 
-  numbox.textContent = player; // Insère dans le HTML le symbole du joueur en cours.
+  if (!gameFinished){ // Si le jeu n'est pas déclaré comme fini (si y'a pas de vainqueur)
 
-  count++; // Incrémentation du nbr de coups (9 max possible)
+    switchPlayer()
+
+    numbox.textContent = player; // Insère dans le HTML le symbole du joueur en cours.
+
+    count++; // Incrémentation du nbr de coups (9 max possible)
+    
+  } // Si le jeu est fini, il ne se passe plus rien.
 
   if (!gameFinished && count >= 5){ // Permettra de figer le vainqueur une fois le score atteint.
     
@@ -42,7 +63,9 @@ function check(numbox){ // Appelée individuellement dans le HTML. à chaque cli
     
   if (count == 9 && !checkScore()){ // Si le nbr de coup est à 9 (soit le max) et que checkScore renvoie false, alors match nul.
 
-    jeu.textContent = "Match nul !" // Quand il y a 9 coups de joués, alors on fait le calcul.       
+    jeu.textContent = "Match nul !" // Quand il y a 9 coups de joués et pas de vainqueur, affichage de match nul et on déclare la fin du jeu.
+    
+    gameFinished = true;        
   }    
 }
 
@@ -72,19 +95,13 @@ function checkScore(player){  // Check toutes les conditions possibles de victoi
   let condition8 = (b3.innerText == player && b5.innerText == player && b7.innerText == player)
  
   if (condition1 || condition2 || condition3 || condition4 || condition5 || condition6 || condition7 || condition8){ // Que des OU. Une doit être True pour être vainqueur.
+
+    if (player == "O"){
+
+      competitor1.textContent = "Gagné !"
+
+    } else competitor2.textContent = "Gagné !"
     
-    winner.textContent = "Vainqueur : " + player + " !" // Technique de concaténation pour le JS.   
-
-    b1.click() // On simule un clic pour ne plus pouvoir jouer. Mais ça n'affiche que des X ou des O selon le vainqueur pour l'instant.
-    b2.click()
-    b3.click()
-    b4.click()
-    b5.click()
-    b6.click()
-    b7.click()
-    b8.click()
-    b9.click()
-
     gameFinished = true; // La game passe en True pour figer uniquement le vainqueur. Checkscore ne sera plus appelée. 
 
   }
@@ -95,8 +112,6 @@ function checkScore(player){  // Check toutes les conditions possibles de victoi
 // To do list :
 
 // Afficher quel joueur doit jouer son coup "X à toi !"
-
-// Faire en sorte qu'une fois la partie finie, on ne puisse plus cliquer. Pour l'instant ça affiche le dernier symbole utilisé.
 
 // Réussir à afficher le nom du vainqueur.
 

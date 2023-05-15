@@ -11,30 +11,48 @@
 
     <h1 id="game">Jeu !</h1>
 
-<table>
-    <tr>
-        <td id="box1" onclick="check('box1');switchPlayer();this.onclick=null;"></td> <!-- this.onclick=null permet de cliquer qu'une seule fois dans la box -->
-        <td id="box2" onclick="check('box2');switchPlayer();this.onclick=null;"></td>
-        <td id="box3" onclick="check('box3');switchPlayer();this.onclick=null;"></td>
-    </tr>
+    <div class="gameBorder">
 
-    <tr>
-        <td id="box4" onclick="check('box4');switchPlayer();this.onclick=null;"></td>
-        <td id="box5" onclick="check('box5');switchPlayer();this.onclick=null;"></td>
-        <td id="box6" onclick="check('box6');switchPlayer();this.onclick=null;"></td>
-    </tr>
+        <div class="gamer">
+            <h2> Joueur 1</h2>
+            <p> Symbole : O</p>
 
-    <tr>
-        <td id="box7" onclick="check('box7');switchPlayer();this.onclick=null;"></td>
-        <td id="box8" onclick="check('box8');switchPlayer();this.onclick=null;"></td>
-        <td id="box9" onclick="check('box9');switchPlayer();this.onclick=null;"></td>
-    </tr>
+            <p id ="competitor1"></p>
 
-</table>
+        </div>
 
-<button id="retry" onclick="newGame()">Recommencer ?</button>
+        <table>
+            <tr>
+                <td id="box1" onclick="check('box1');this.onclick=null;"></td> <!-- this.onclick=null permet de cliquer qu'une seule fois dans la box -->
+                <td id="box2" onclick="check('box2');this.onclick=null;"></td>
+                <td id="box3" onclick="check('box3');this.onclick=null;"></td>
+            </tr>
 
-<h2 id="winner"></h2>
+            <tr>
+                <td id="box4" onclick="check('box4');this.onclick=null;"></td>
+                <td id="box5" onclick="check('box5');this.onclick=null;"></td>
+                <td id="box6" onclick="check('box6');this.onclick=null;"></td>
+            </tr>
+
+            <tr>
+                <td id="box7" onclick="check('box7');this.onclick=null;"></td>
+                <td id="box8" onclick="check('box8');this.onclick=null;"></td>
+                <td id="box9" onclick="check('box9');this.onclick=null;"></td>
+            </tr>
+        </table>
+
+        <div class="gamer">
+            <h2> Joueur 2</h2>
+            <p> Symbole : X</p>  
+
+            <p id ="competitor2"></p>      
+        </div>
+
+    </div>
+
+    <button id="retry" onclick="newGame()">Recommencer ?</button>
+
+
 
 <script src="script.js"></script>
 </body>
