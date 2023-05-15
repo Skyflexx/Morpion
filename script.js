@@ -1,4 +1,4 @@
-let player1 = { symbol : "O", name : "Loic" };
+let player1 = { symbol : "O", name : "Loic" }; // le nom du joueur sera pour plus tard
 let player2 = { symbol : "X", name : "Marie"};
 let jeu = document.getElementById("game");
 let count = 0; // compteur des coups. 9 max.
@@ -19,8 +19,9 @@ let b9 = document.getElementById("box9")
 
 let gameFinished = false
 
-// let currentPlayer1 = (player == player1.symbol); // Conditions réutilisables partout. Si player == O alors renvoie true.
-// let currentPlayer2 = (player == player2.symbol);
+competitor1.textContent = "A toi de jouer !"
+
+// FONCTIONS DIVERSES 
 
 function switchPlayer(){ // Fonction permettant de switcher de joueur et donc de symbole. La fonction est appelée à chaque clic dans le HTML.
 
@@ -48,23 +49,28 @@ function check(numbox){ // Appelée individuellement dans le HTML. à chaque cli
 
   if (!gameFinished){ // Si le jeu n'est pas déclaré comme fini (si y'a pas de vainqueur)
 
-    switchPlayer()
+    switchPlayer() // On switche de joueur
 
-    numbox.textContent = player; // Insère dans le HTML le symbole du joueur en cours.
+    numbox.textContent = player; // Insère dans la box HTML qui a été cliquée le symbole du joueur en cours.
 
     count++; // Incrémentation du nbr de coups (9 max possible)
     
-  } // Si le jeu est fini, il ne se passe plus rien.
+  } // Si le jeu est fini, il ne se passe plus rien. Il est ainsi figé.
+
 
   if (!gameFinished && count >= 5){ // Permettra de figer le vainqueur une fois le score atteint.
     
     checkScore(player) // Tant que le jeu n'est pas fini, on fait un checkscore à chaque coup. l'appelle à partir du coup numéro 5 pour économiser des ressources.  
   }
+
     
   if (count == 9 && !checkScore()){ // Si le nbr de coup est à 9 (soit le max) et que checkScore renvoie false, alors match nul.
 
     jeu.textContent = "Match nul !" // Quand il y a 9 coups de joués et pas de vainqueur, affichage de match nul et on déclare la fin du jeu.
     
+    competitor2.textContent = ""
+    competitor1.textContent = ""
+
     gameFinished = true;        
   }    
 }
@@ -89,30 +95,30 @@ function checkScore(player){  // Check toutes les conditions possibles de victoi
   let condition5 = (b2.innerText == player && b5.innerText == player && b8.innerText == player)
   let condition6 = (b3.innerText == player && b6.innerText == player && b9.innerText == player)
  
-  // Diagonales
+  // Conditions pour les Diagonales
  
   let condition7 = (b1.innerText == player && b5.innerText == player && b9.innerText == player) 
   let condition8 = (b3.innerText == player && b5.innerText == player && b7.innerText == player)
  
   if (condition1 || condition2 || condition3 || condition4 || condition5 || condition6 || condition7 || condition8){ // Que des OU. Une doit être True pour être vainqueur.
 
-    if (player == "O"){
+    if (player == "X"){
 
       competitor1.textContent = "Gagné !"
+      competitor2.textContent = ""
 
-    } else competitor2.textContent = "Gagné !"
+    } else {
+      
+      competitor2.textContent = "Gagné !"
+      competitor1.textContent = ""
+    }
     
     gameFinished = true; // La game passe en True pour figer uniquement le vainqueur. Checkscore ne sera plus appelée. 
+
+    jeu.textContent = "Partie terminée !"
 
   }
 
 }
 
 
-// To do list :
-
-// Afficher quel joueur doit jouer son coup "X à toi !"
-
-// Réussir à afficher le nom du vainqueur.
-
-// Bonus : Scoring, animations.

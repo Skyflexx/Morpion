@@ -17,6 +17,7 @@
   }
 
   #retry{
+    display: block; /*Par défaut inline block. Ce qui ne le centre pas*/
     margin : 30px auto;
   }
 
@@ -37,3 +38,4 @@
     font-weight: bold;
     
   }
+
